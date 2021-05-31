@@ -20,21 +20,23 @@ export class GraphQLCodegenWebpackPlugin implements WebpackPluginInstance {
     const codegenContext = await loadContext(this.options.configPath)
     const codegenConfig = codegenContext.getConfig()
 
-    if (this.isCodegenEnabled) {
-      return
-    }
-
     compiler.hooks.beforeCompile.tapPromise(this.name, async () => {
+      if (this.isCodegenEnabled) {
+        return
+      }
+
+      this.isCodegenEnabled = true
+
       await generate({
         ...codegenConfig,
         errorsOnly: true,
         watch: compiler.watchMode,
       })
         .then(() => {
-          this.isCodegenEnabled = true
           logger.info('successfully generated GraphQL types')
         })
         .catch((error) => {
+          this.isCodegenEnabled = false
           logger.error('failed to generate GraphQL types')
           throw error
         })
