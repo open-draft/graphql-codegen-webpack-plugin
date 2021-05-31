@@ -22,14 +22,10 @@ export class GraphQLCodegenWebpackPlugin implements WebpackPluginInstance {
       await generate({
         ...codegenConfig,
         errorsOnly: true,
+      }).catch((error) => {
+        logger.error('failed to generate GraphQL types')
+        console.error(error)
       })
-        .then(() => {
-          logger.info('successfully generated GraphQL types')
-        })
-        .catch((error) => {
-          logger.error('failed to generate GraphQL types')
-          throw error
-        })
     })
   }
 }
