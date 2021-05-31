@@ -8,10 +8,8 @@ export interface PluginOptions {
 export class GraphQLCodegenWebpackPlugin implements WebpackPluginInstance {
   private name = 'GraphQLCodegenWebpackPlugin'
   private options: PluginOptions
-  private isCodegenEnabled: boolean
 
   constructor(options?: PluginOptions) {
-    this.isCodegenEnabled = false
     this.options = options
   }
 
@@ -21,22 +19,14 @@ export class GraphQLCodegenWebpackPlugin implements WebpackPluginInstance {
     const codegenConfig = codegenContext.getConfig()
 
     compiler.hooks.beforeCompile.tapPromise(this.name, async () => {
-      if (this.isCodegenEnabled) {
-        return
-      }
-
-      this.isCodegenEnabled = true
-
       await generate({
         ...codegenConfig,
         errorsOnly: true,
-        watch: compiler.watchMode,
       })
         .then(() => {
           logger.info('successfully generated GraphQL types')
         })
         .catch((error) => {
-          this.isCodegenEnabled = false
           logger.error('failed to generate GraphQL types')
           throw error
         })
