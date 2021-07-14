@@ -7,9 +7,9 @@ A webpack plugin for [GraphQL Code Generator](https://www.graphql-code-generator
 ### Install
 
 ```sh
-npm install graphql-codegen-webpack-plugin
+npm install graphql-codegen-webpack-plugin --save-dev
 # or
-yarn add graphql-codegen-webpack-plugin
+yarn add graphql-codegen-webpack-plugin --dev
 ```
 
 ### Configure GraphQL Code Generator
