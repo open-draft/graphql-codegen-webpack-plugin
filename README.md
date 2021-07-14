@@ -1,8 +1,10 @@
-# GraphQL Code Generator webpack plugin
+# GraphQLCodegenWebpackPlugin
 
 A webpack plugin for [GraphQL Code Generator](https://www.graphql-code-generator.com/).
 
 ## Getting started
+
+### Install
 
 ```sh
 npm install graphql-codegen-webpack-plugin
@@ -10,10 +12,12 @@ npm install graphql-codegen-webpack-plugin
 yarn add graphql-codegen-webpack-plugin
 ```
 
+### Configure GraphQL Code Generator
+
 Create a configuration file for GraphQL Code Generator:
 
 ```yml
-# codegen.yml
+# graphql-codegen.yml
 schema: 'path/to/schema/**/*.gql'
 documents: 'path/to/documents/**/*.tsx'
 generates:
@@ -22,9 +26,11 @@ generates:
       - typescript
 ```
 
-> Refer to the [Config Reference](https://www.graphql-code-generator.com/docs/getting-started/codegen-config) when writing the configuration.
+> Learn more about how to [configure GraphQL Code Generator](https://www.graphql-code-generator.com/docs/getting-started/codegen-config).
 
-Finally, add the plugin to your webpack configuration:
+### Configure webpack
+
+Finally, add the `GraphQLCodegenWebpackPlugin` plugin to your webpack configuration:
 
 ```js
 // webpack.config.js
