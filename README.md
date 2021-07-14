@@ -2,6 +2,12 @@
 
 A webpack plugin for [GraphQL Code Generator](https://www.graphql-code-generator.com/).
 
+## How is this plugin different?
+
+- No abstraction over GraphQL Code Generator—you have full control over the technology without an extra API layer to maintain.
+- Executes `graphql-codegen` internally in the right stages of a webpack build. This keeps your generated definitions up-to-date while developing, as you don't have to run an extra command to generate them anymore.
+- Utilizes GraphQL Code Generator's Node.js API instead of relying on child processes.
+
 ## Getting started
 
 ### Install
@@ -46,3 +52,7 @@ module.exports = {
   ],
 }
 ```
+
+## Honorable mentions
+
+- [`graphql-let`](https://github.com/piglovesyou/graphql-let)
